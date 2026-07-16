@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+
 @dataclass
 class Profile:
     email: str  # Non Default fields should always be mentioned first
