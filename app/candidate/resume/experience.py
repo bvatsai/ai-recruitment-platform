@@ -5,9 +5,35 @@ from app.candidate.resume.project import Project    #project is imported from th
 
 @dataclass
 class Experience:
-    company_name: str                   #field must be provided when creating an instance of the Experience class.
-    designation: str                    #field must be provided when creating an instance of the Experience class.
+    company_name: str                   #field must be provided when creating an instance of the Experience class.                    #field must be provided when creating an instance of the Experience class.
     start_date: date                    #field must be provided when creating an instance of the Experience class.
+    designation: str | None = None
     end_date: date | None = None        #field is optional and can be left out when creating an instance of the Experience class. If not provided, it will default to None.
     tech_stack: list[str] = field(default_factory=list)     #field is of type object and can be optional and can be left out when creating an instance of the Experience class. If not provided, it will default to an empty list.
     projects: list[Project] = field(default_factory=list)   #field is of type object and can be optional and can be left out when creating an instance of the Experience class. If not provided, it will default to an empty list.
+
+    def is_valid(self) -> bool:
+        if self.start_date > date.today():
+            return False
+
+        if self.end_date is None:
+            return True
+
+        return self.end_date > self.start_date
+
+    def update(self,designation,start_date,end_date) -> bool:
+        updated = False
+
+        if designation is not None:
+            self.designation = designation
+            updated = True
+
+        if start_date is not None:
+            self.start_date = start_date
+            updated = True
+
+        if end_date is not None:
+            self.end_date = end_date
+            updated = True
+
+        return updated
