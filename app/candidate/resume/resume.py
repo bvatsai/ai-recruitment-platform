@@ -23,3 +23,9 @@ class Resume:
             self.skills.append(skill)
             return True
         return False
+    
+    def remove_skill(self, skill: Skill) -> bool:
+        if self.has_skill(skill.name):
+            self.skills.remove(skill)
+            return True
+        return False
