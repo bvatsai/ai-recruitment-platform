@@ -11,7 +11,7 @@ class ProficiencyLevel(Enum):
 @dataclass
 class Skill:
     name: str
-    years_of_experience: float | None
-    self_proficiency: ProficiencyLevel | None
-    ai_proficiency: ProficiencyLevel | None
-    last_used: date | None
+    years_of_experience: float | None = None
+    self_proficiency: ProficiencyLevel | None = None
+    ai_proficiency: ProficiencyLevel | None = None
+    last_used: int | None = None
