@@ -1,19 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
-from enum import Enum
-
-class EducationLevel(Enum):
-    SECONDARY = "Secondary"
-    HIGHER_SECONDARY = "Higher Secondary"
-    BACHELORS = "Bachelor's"
-    MASTERS = "Master's"
-    DOCTORATE = "Doctorate"
-
-class GradingSystem(Enum):
-    PERCENTAGE = "Percentage"
-    CGPA = "CGPA"
-    GPA = "GPA"
-    GRADE = "Grade"
+from app.candidate.resume.resume_enums import EducationLevel, GradingSystem
 
 @dataclass
 class Education:
@@ -25,3 +12,19 @@ class Education:
     specialization: str | None = None
     score: float | None = None
     grading_system: GradingSystem | None = None
+
+    def is_valid(self) -> bool:
+        if self.start_date >= date.today():
+            return False
+
+        if self.end_date is None:
+            return True
+
+        return self.end_date > self.start_date
+    
+    def is_duplicate_of(self, other: "Education") -> bool:
+        return (
+            self.qualification.lower() == other.qualification.lower() and
+            self.institution.lower() == other.institution.lower() and
+            self.start_date == other.start_date
+        )

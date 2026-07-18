@@ -1,12 +1,7 @@
 from dataclasses import dataclass
 from datetime import date
 from enum import Enum
-
-class ProficiencyLevel(Enum):
-    BEGINNER = "Beginner"
-    INTERMEDIATE = "Intermediate"
-    ADVANCED = "Advanced"
-    EXPERT = "Expert"
+from app.candidate.resume.resume_enums import OperationResult, ProficiencyLevel
 
 @dataclass
 class Skill:
@@ -15,3 +10,9 @@ class Skill:
     self_proficiency: ProficiencyLevel | None = None
     ai_proficiency: ProficiencyLevel | None = None
     last_used: int | None = None
+
+    def has_skill(self, skill_name: str) -> OperationResult:
+        return any(skill.name.lower() == skill_name.lower() for skill in self.skills)
+    
+    def is_duplicate_of(self, other: "Skill") -> bool:
+        return self.name.lower() == other.name.lower()  
