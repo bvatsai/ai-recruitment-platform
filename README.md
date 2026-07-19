@@ -27,6 +27,10 @@ A production-oriented AI recruitment platform being built step-by-step using Pyt
 - SQLAlchemy
 - REST APIs
 
+- ⏳ Phase 4 - AI Resume Parsing
+- ⏳ Phase 5 - Recommendation Engine
+- ⏳ Phase 6 - Agentic AI Recruiter
+
 ## Tech Stack
 - Python
 - Object-Oriented Programming
