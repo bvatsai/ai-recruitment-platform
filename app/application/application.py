@@ -2,7 +2,6 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from uuid import UUID, uuid4
 from app.application.application_enum import applicationStatus
-from app.job.job import Job
 
 def create_application_id() -> UUID:
     return uuid4()
