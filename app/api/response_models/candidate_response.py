@@ -1,8 +1,7 @@
 from uuid import UUID
 from pydantic import BaseModel
 
-from app.candidate.candidate import Candidate
-
+from app.models.candidate import Candidate
 
 class CandidateResponse(BaseModel):
     candidate_id: UUID
